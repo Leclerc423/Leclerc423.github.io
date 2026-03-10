@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shepherd’s Grid</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <!-- 顶部F1+AI流动线 -->
+  <div class="hud-top-line"></div>
+
+  <!-- 右下角F1赛道弯道 -->
+  <svg class="bg-track-corner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10,50 C20,30 40,20 60,30 S80,70 95,60" />
+  </svg>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Shepherd’s Grid</h1>
+      <div class="sub">AI 部署 · 技术实战 · 生活旅行 · 游戏日志</div>
+    </div>
+
+    <!-- 赛道分隔线 -->
+    <svg class="track-divider" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,2 L20,2" />
+    </svg>
+
+    <!-- 导航栏（更新为游戏版板块） -->
+    <div class="nav">
+      <a href="#" class="active">全部文章</a>
+      <a href="#ai-tech">AI & 技术</a>
+      <a href="#practical-tips">实战技巧</a>
+      <a href="#life-travel">生活 & 旅行</a>
+      <a href="#game-log">游戏日志</a>
+      <!-- 拓展预留：新增板块直接加这行 <a href="#new-tag">新板块</a> -->
+    </div>
+
+    <!-- 响应式内容区：电脑端分栏，手机端单列 -->
+    <div class="content-wrapper">
+      <!-- 主内容区（文章列表） -->
+      <div class="main-content">
+        <div class="card card-tech" id="all-articles">
+          <h2>最近发布</h2>
+          
+          <!-- AI&技术类文章 -->
+          <div class="article-item">
+            <a href="/article/ai-tech/sd-intel-mac.md" class="article-title">Intel Mac 本地运行 Stable Diffusion 完整部署手册</a>
+            <div class="article-tag tag-tech">AI 技术</div>
+          </div>
+          <div class="article-item">
+            <a href="/article/ai-tech/wan2.2-deploy.md" class="article-title">Wan2.2模型Intel Mac部署实战（图生视频）</a>
+            <div class="article-tag tag-tech">AI 技术</div>
+          </div>
+          
+          <!-- 实战技巧类 -->
+          <div class="article-item">
+            <a href="/article/practical-tips/draw-things-lcm.md" class="article-title">Draw Things + LCM 极速图生图使用技巧</a>
+            <div class="article-tag tag-tech">实战技巧</div>
+          </div>
+          
+          <!-- 生活旅行类 -->
+          <div class="article-item">
+            <a href="/article/life-travel/city-travel.md" class="article-title">城市行走随笔：风与日常的温柔记录</a>
+            <div class="article-tag tag-life">生活</div>
+          </div>
+          
+          <!-- 游戏日志类（替换原F1感悟） -->
+          <div class="article-item">
+            <a href="/article/game-log/elden-ring.md" class="article-title">艾尔登法环：魂系游戏的叙事与玩法设计</a>
+            <div class="article-tag tag-life">游戏评测</div>
+          </div>
+          <div class="article-item">
+            <a href="/article/game-log/starfield.md" class="article-title">星空 Starfield：开放世界的自由度与体验感</a>
+            <div class="article-tag tag-life">游戏心得</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 侧边栏（电脑端显示，手机端在下方）：关于+内容方向 -->
+      <div class="side-content">
+        <div class="card card-side">
+          <h2>关于这里</h2>
+          <p>Grid 取自 F1 发车格，也代表 AI 与技术的逻辑网格。</p>
+          <p>这里记录本地 AI 部署、技术实战、效率工具，也分享生活旅行与游戏体验。</p>
+        </div>
+
+        <div class="card card-side">
+          <h2>内容板块</h2>
+          <p>• AI / LLM / 文生图模型本地部署与实战</p>
+          <p>• 技术经验、Mac 优化、实用工具技巧</p>
+          <p>• 生活随笔、旅行记录、日常感悟</p>
+          <p>• 游戏评测、玩法分析、通关心得</p>
+        </div>
+
+        <div class="links">
+          <a href="https://Leclerc423.github.io">GitHub</a>
+          <a href="mailto:18360863101@126.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

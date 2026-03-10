@@ -1,0 +1,10 @@
+Leclerc423.github.io/ （根目录）
+├── index.html        （首页，响应式优化版）
+├── _config.yml       （Jekyll 配置文件，解析 Markdown 用）
+├── css/              （统一样式文件夹，响应式+风格）
+│   └── main.css      （所有页面的样式文件，包括响应式）
+└── article/
+    ├─ ai-tech/        AI 技术
+    ├─ practical-tips/ 实战技巧
+    ├─ life-travel/    生活旅行
+    └─ game-log/       游戏评测/记录/心得
