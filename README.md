@@ -1,7 +1,7 @@
 # Leclerc423.github.io
 personal blog
 
-
+```
 #  Markdown 头部写法
 ---
 layout: default
@@ -42,3 +42,5 @@ category: game-log
 tag: 游戏
 tag_type: life
 ---
+
+```
