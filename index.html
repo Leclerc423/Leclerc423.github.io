@@ -7,26 +7,18 @@
 <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
-<!-- 顶部F1+AI流动线 -->
 <div class="hud-top-line"></div>
-
-<!-- 右下角F1赛道弯道 -->
 <svg class="bg-track-corner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <path d="M10,50 C20,30 40,20 60,30 S80,70 95,60" />
 </svg>
-
 <div class="container">
   <div class="hero">
     <h1>Shepherd’s Grid</h1>
     <div class="sub">AI & 技术 · 财经学习 · 生活旅行 · 游戏日志</div>
   </div>
-
   <svg class="track-divider" viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,2 L20,2" />
   </svg>
-
-  <!-- 导航栏：点击筛选 -->
   <div class="nav">
     <a href="#" class="active" data-category="all">全部文章</a>
     <a href="#" data-category="ai-tech">AI & 技术</a>
@@ -34,17 +26,14 @@
     <a href="#" data-category="life-travel">生活 & 旅行</a>
     <a href="#" data-category="game-log">游戏日志</a>
   </div>
-
   <div class="content-wrapper">
     <div class="main-content">
       <div class="card card-tech" id="all-articles">
         <h2>最近发布</h2>
-
         <div id="article-list">
           {% assign pinned_articles = site.articles | where: "pinned", true | sort: "date", "last" %}
           {% assign normal_articles = site.articles | where: "pinned", false | sort: "date", "last" %}
           {% assign all_articles = pinned_articles | concat: normal_articles %}
-
           {% if all_articles.size > 0 %}
             {% for article in all_articles %}
             <div class="article-item{% if article.pinned %} pinned{% endif %}" data-category="{{ article.category }}">
@@ -66,14 +55,12 @@
         </div>
       </div>
     </div>
-
     <div class="side-content">
       <div class="card card-side">
         <h2>关于这里</h2>
         <p>Grid 取自 F1 发车格，也代表 AI 与技术的逻辑网格。</p>
         <p>这里记录 AI 部署、技术实战、财经学习，也分享生活旅行与游戏体验。</p>
       </div>
-
       <div class="card card-side">
         <h2>内容板块</h2>
         <p>• AI & 技术：模型部署、本地运行、实战经验</p>
@@ -81,7 +68,6 @@
         <p>• 生活 & 旅行：日常随笔、城市行走、生活记录</p>
         <p>• 游戏日志：评测、心得、通关与体验</p>
       </div>
-
       <div class="links">
         <a href="https://Leclerc423.github.io">GitHub</a>
         <a href="mailto:18360863101@126.com">Email</a>
@@ -89,26 +75,18 @@
     </div>
   </div>
 </div>
-
 <script>
-  // 栏目筛选逻辑
-  document.querySelectorAll('.nav a').forEach(tab => {
-    tab.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      e.target.classList.add('active');
-      const target = e.target.dataset.category;
-
-      document.querySelectorAll('.article-item').forEach(item => {
-        if (target === 'all' || item.dataset.category === target) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+document.querySelectorAll('.nav a').forEach(tab => {
+  tab.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    e.target.classList.add('active');
+    const target = e.target.dataset.category;
+    document.querySelectorAll('.article-item').forEach(item => {
+      item.style.display = target === 'all' || item.dataset.category === target ? 'flex' : 'none';
     });
   });
+});
 </script>
-
 </body>
 </html>
