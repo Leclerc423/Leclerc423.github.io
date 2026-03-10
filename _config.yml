@@ -1,16 +1,23 @@
-# Jekyll 基础配置
 title: Shepherd’s Grid
 description: AI&技术相关 · 智能家居 · 生活与旅行 · F1 · MI
 baseurl: ""
 url: "https://Leclerc423.github.io"
-permalink: /article/:categories/:title.html  # Markdown生成页面的URL规则
+permalink: /article/:categories/:title.html
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 自定义文章分类（对应article下的子文件夹）
+# 文章集合配置（关键：识别所有属性）
 collections:
   articles:
     output: true
     permalink: /article/:path.html
+    # 定义文章默认属性
+    defaults:
+      - scope:
+          path: "article"
+          type: "articles"
+        values:
+          pinned: false  # 默认不置顶
+          tag_type: "tech" # 默认标签类型（tech/life）
