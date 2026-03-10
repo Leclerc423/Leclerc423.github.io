@@ -35,6 +35,12 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+# 强制 Jekyll 解析根目录的 index.md
+include:
+  - index.md
 
+# 关闭不必要的功能，避免冲突
+safe: false
+lsi: false
 # 确保编码正确
 encoding: "utf-8"
