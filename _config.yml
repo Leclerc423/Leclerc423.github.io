@@ -21,3 +21,20 @@ collections:
         values:
           pinned: false  # 默认不置顶
           tag_type: "tech" # 默认标签类型（tech/life）
+# 修复 GitHub Actions 构建的关键配置
+plugins:
+  - jekyll-github-metadata
+  - jekyll-feed
+
+# 禁用不必要的功能，加快构建
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# 确保编码正确
+encoding: "utf-8"
