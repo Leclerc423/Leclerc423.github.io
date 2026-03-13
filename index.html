@@ -30,34 +30,46 @@ layout: none
     <a href="#" data-category="game-log">游戏日志</a>
   </div>
   <div class="content-wrapper">
-    <div class="main-content">
-      <div class="card card-tech" id="all-articles">
-        <h2>最近发布</h2>
-        <div id="article-list">
-          {% assign pinned_articles = site.articles | where: "pinned", true | sort: "date", "last" %}
-          {% assign normal_articles = site.articles | where: "pinned", false | sort: "date", "last" %}
-          {% assign all_articles = pinned_articles | concat: normal_articles %}
-          {% if all_articles.size > 0 %}
-            {% for article in all_articles %}
-            <div class="article-item{% if article.pinned %} pinned{% endif %}" data-category="{{ article.category }}">
-              <a href="{{ article.url }}" class="article-title">
-                {% if article.pinned %}🔹 {{ article.title }}（置顶）{% else %}{{ article.title }}{% endif %}
-              </a>
-              <div class="article-tag tag-{{ article.tag_type }}">{{ article.tag }}</div>
-            </div>
-            {% endfor %}
-          {% else %}
-          <div class="empty-state">
-            <svg class="empty-track" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10,30 Q30,10 50,30 T90,30 T110,30" stroke="#e10600" stroke-width="2" fill="none" opacity="0.3"/>
-              <circle cx="60" cy="30" r="8" fill="#007aff" opacity="0.4"/>
-            </svg>
-            <p class="empty-text">暂无文章 · 赛道待发车 🏁</p>
+
+    <div class="card card-tech" id="all-articles">
+      <h2>已发布文章</h2>
+      <div class="article-list">
+        {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+        {% assign pinned_articles = sorted_articles | where: "pinned", true %}
+        {% assign normal_articles = sorted_articles | where: "pinned", false %}
+
+        {% if site.articles.size > 0 %}
+         {% for article in pinned_articles %}
+          <div class="article-item{% if article.pinned %} pinned{% endif %}" data-category="{{ article.category }}">
+           <a href="{{ article.url }}" class="article-title">
+            {% if article.pinned %}🔹 {% endif %}{{ article.title }}
+            </a>
+            <div class="article-tag tag-{{ article.tag-type }}">{{ article.tag }}</div>
+            <div class="article-date">{{ article.date | date: "%Y-%m-%d" }}</div>
           </div>
-          {% endif %}
-        </div>
+          {% endfor %}
+
+          {% for article in normal_articles %}
+          <div class="article-item" data-category="{{ article.category }}">
+           <a href="{{ article.url }}" class="article-title">{{ article.title }}</a>
+           <div class="article-tag tag-{{ article.tag-type }}">{{ article.tag }}</div>
+           <div class="article-date">{{ article.date | date: "%Y-%m-%d" }}</div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="empty-state">
+            <div class="empty-track">
+             <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+               <path d="M10,30 Q30,10 50,30 T90,30 T110,30" stroke="#e10600" stroke-width="2" fill="none" opacity="0.3"/>
+                <circle cx="60" cy="30" r="8" fill="#007aff" opacity="0.4"/>
+              </svg>
+            </div>
+            <p class="empty-text">暂无文章 · 赛道待发车</p>
+          </div>
+        {% endif %}
       </div>
     </div>
+    
     <div class="side-content">
       <div class="card card-side">
         <h2>关于这里</h2>
