@@ -7,19 +7,6 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 定义 posts collection
-collections:
-  posts:
-    output: true
-
-# 设置 posts 的默认值
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: default
-
 # GitHub Actions 配置
 plugins:
   - jekyll-github-metadata
