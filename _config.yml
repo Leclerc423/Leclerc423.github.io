@@ -7,6 +7,29 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+# 定义分类文章的 collection
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+  pages:
+    output: true
+
+# 设置默认值
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+      category: all
+      pinned: false
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+
 # GitHub Actions 配置
 plugins:
   - jekyll-github-metadata

@@ -315,3 +315,241 @@ body {
     font-size: 16px;
   }
 }
+
+/* ==================== 新架构样式 ==================== */
+
+/* 首页分类导航 */
+.categories-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0;
+  padding: 20px;
+  background: var(--apple-card);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--apple-bg);
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--apple-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-item:hover {
+  background: var(--line-light);
+  transform: translateY(-2px);
+}
+
+.nav-item.active {
+  background: var(--ai-blue);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
+/* 分类内容区 */
+.category-section {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line-light);
+}
+
+.section-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--apple-text);
+}
+
+.section-meta {
+  font-size: 14px;
+  color: var(--apple-gray);
+  font-weight: 500;
+}
+
+.total-count {
+  background: var(--apple-bg);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+/* 文章卡片网格 */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* 文章列表（分类页面用） */
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 单个文章卡片 */
+.post-card,
+.post-item {
+  background: var(--apple-card);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--line-light);
+}
+
+.post-card:hover,
+.post-item:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  border-color: var(--ai-blue);
+}
+
+.post-header {
+  margin-bottom: 12px;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--apple-text);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 置顶标签 */
+.pin-badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  background: linear-gradient(135deg, #ff9500, #ff6b00);
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.post-title a {
+  color: var(--apple-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-title a:hover {
+  color: var(--ai-blue);
+}
+
+/* 文章元数据 */
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--apple-gray);
+}
+
+.post-date {
+  font-weight: 500;
+}
+
+.post-tag {
+  padding: 2px 8px;
+  background: var(--apple-bg);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* 文章摘要 */
+.post-excerpt {
+  color: var(--apple-gray);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-light);
+}
+
+/* 分类页面特殊样式 */
+.category-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-header {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: var(--apple-card);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border: 1px solid var(--line-light);
+}
+
+.category-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--apple-text);
+}
+
+.category-header p {
+  font-size: 16px;
+  color: var(--apple-gray);
+}
+
+/* 移动端适配 */
+@media (max-width: 991px) {
+  .categories-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 15px;
+  }
+
+  .nav-item {
+    flex-shrink: 0;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-header h1 {
+    font-size: 28px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
