@@ -7,6 +7,34 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+# 静态页面配置
+include:
+  - categories
+
+# 文章配置
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title.html
+  pages:
+    output: true
+
+# 首页配置
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+      pinned: false
+      tag: "文章"
+      tag_type: tech
+  - scope:
+      path: "categories"
+      type: "pages"
+    values:
+      layout: default
+
 # GitHub Actions 配置
 plugins:
   - jekyll-github-metadata
