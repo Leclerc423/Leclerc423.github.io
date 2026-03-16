@@ -7,24 +7,18 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 完全移除 collections，使用默认页面功能
-# Jekyll 会自动处理根目录和 _posts 目录下的 markdown 文件
+# 定义 posts collection
+collections:
+  posts:
+    output: true
 
-# 添加一些基本的 defaults
+# 设置 posts 的默认值
 defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: default
   - scope:
       path: ""
       type: "posts"
     values:
       layout: default
-      pinned: false
-      tag: "文章"
-      tag_type: tech
 
 # GitHub Actions 配置
 plugins:
