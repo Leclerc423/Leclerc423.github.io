@@ -1,7 +1,7 @@
 ---
 layout: default
 title: AI 技术
-category: ai-tech
+permalink: /categories/ai-tech/
 ---
 
 <div class="track-top"></div>
@@ -20,14 +20,14 @@ category: ai-tech
   </nav>
 
   <div class="article-list">
-    {% if site.categories.ai-tech.size > 0 %}
-      {% for post in site.categories.ai-tech %}
+    {% if site.categories['ai-tech'].size > 0 %}
+      {% for post in site.categories['ai-tech'] %}
         <article class="article-item" data-category="ai-tech">
           <h2 class="article-title">
             {% if post.pinned %}
             <span class="pin-badge">🔥 置顶</span>
             {% endif %}
-            <a href="{{ post.url }}">{{ post.title }}</a>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           </h2>
 
           <div class="article-meta">
@@ -38,7 +38,7 @@ category: ai-tech
           </div>
 
           {% if post.excerpt %}
-          <p class="article-excerpt">{{ post.excerpt }}</p>
+          <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
           {% endif %}
         </article>
       {% endfor %}

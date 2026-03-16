@@ -1,34 +1,33 @@
 ---
 layout: default
-title: {{ page.title | default: dir | replace: '-', ' ' }}
-category: {{ dir }}
+title: 生活旅行
+permalink: /categories/life-travel/
 ---
 
 <div class="track-top"></div>
 
 <div class="container">
   <div class="header">
-    <h1>⭐ {{ page.title }}</h1>
-    <p>{{ page.description | default: '' }}</p>
+    <h1>✈️ 生活旅行</h1>
+    <p>生活记录与旅行见闻</p>
   </div>
 
   <nav class="nav-list">
     <a href="/" class="nav-item active">📚 返回首页</a>
     <a href="/categories/ai-tech/" class="nav-item">🤖 AI 技术</a>
     <a href="/categories/finance/" class="nav-item">💰 财经</a>
-    <a href="/categories/life-travel/" class="nav-item">✈️ 生活</a>
     <a href="/categories/game-log/" class="nav-item">🎮 游戏</a>
   </nav>
 
   <div class="article-list">
-    {% if site.categories.{{ dir }}.size > 0 %}
-      {% for post in site.categories.{{ dir }} %}
-        <article class="article-item" data-category="{{ dir }}">
+    {% if site.categories['life-travel'].size > 0 %}
+      {% for post in site.categories['life-travel'] %}
+        <article class="article-item" data-category="life-travel">
           <h2 class="article-title">
             {% if post.pinned %}
             <span class="pin-badge">🔥 置顶</span>
             {% endif %}
-            <a href="{{ post.url }}">{{ post.title }}</a>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           </h2>
 
           <div class="article-meta">
@@ -39,7 +38,7 @@ category: {{ dir }}
           </div>
 
           {% if post.excerpt %}
-          <p class="article-excerpt">{{ post.excerpt }}</p>
+          <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
           {% endif %}
         </article>
       {% endfor %}

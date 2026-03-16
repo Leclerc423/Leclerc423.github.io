@@ -11,14 +11,6 @@ kramdown:
 include:
   - categories
 
-# 文章配置
-collections:
-  posts:
-    output: true
-    permalink: /:categories/:year/:month/:day/:title.html
-  pages:
-    output: true
-
 # 首页配置
 defaults:
   - scope:
@@ -34,6 +26,13 @@ defaults:
       type: "pages"
     values:
       layout: default
+
+# 分类配置
+category_names:
+  ai-tech: "AI 技术"
+  finance: "财经"
+  life-travel: "生活"
+  game-log: "游戏"
 
 # GitHub Actions 配置
 plugins:

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Shepherd's Grid - 首页
+permalink: /
 ---
 
 <div class="track-top"></div>
@@ -21,13 +22,14 @@ title: Shepherd's Grid - 首页
 
   <div class="article-list">
     {% if site.posts.size > 0 %}
+      <p>找到 {{ site.posts.size }} 篇文章</p>
       {% for post in site.posts %}
         <article class="article-item" data-category="{{ post.category }}">
           <h2 class="article-title">
             {% if post.pinned %}
             <span class="pin-badge">🔥 置顶</span>
             {% endif %}
-            <a href="{{ post.url }}">{{ post.title }}</a>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           </h2>
 
           <div class="article-meta">
@@ -35,10 +37,11 @@ title: Shepherd's Grid - 首页
             {% if post.tag %}
             <span class="article-tag">{{ post.tag }}</span>
             {% endif %}
+            <span class="article-category">{{ post.category }}</span>
           </div>
 
           {% if post.excerpt %}
-          <p class="article-excerpt">{{ post.excerpt }}</p>
+          <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
           {% endif %}
         </article>
       {% endfor %}
