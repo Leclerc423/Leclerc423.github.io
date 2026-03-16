@@ -7,60 +7,27 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 文章集合配置
+# 只使用 posts 集合
 collections:
   posts:
     output: true
-    permalink: /:categories/:title.html
+    permalink: /article/:title.html
 
-# 文章默认属性
 defaults:
-  # 所有文章的默认值
   - scope:
       path: ""
       type: "posts"
     values:
       layout: default
       pinned: false
-  # AI & 技术分类
-  - scope:
-      path: "_article/ai-tech"
-    values:
-      category: ai-tech
-      tag: "AI & 技术"
-      tag_type: "tech"
-  # 财经学习分类
-  - scope:
-      path: "_article/finance"
-    values:
-      category: finance
-      tag: "财经学习"
-      tag_type: "tech"
-  # 生活旅行分类
-  - scope:
-      path: "_article/life-travel"
-    values:
-      category: life-travel
-      tag: "生活旅行"
-      tag_type: "life"
-  # 游戏日志分类
-  - scope:
-      path: "_article/game-log"
-    values:
-      category: game-log
-      tag: "游戏日志"
-      tag_type: "life"
+      tag: "文章"
+      tag_type: tech
 
-# 包含所有文章文件
-include:
-  - "_article/**/*.md"
-
-# 修复 GitHub Actions 构建的关键配置
+# GitHub Actions 配置
 plugins:
   - jekyll-github-metadata
   - jekyll-feed
 
-# 禁用不必要的功能，加快构建
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -70,13 +37,9 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
-# 强制 Jekyll 解析根目录的 index.md
 include:
   - index.md
 
-# 关闭不必要的功能，避免冲突
 safe: false
 lsi: false
-
-# 确保编码正确
 encoding: "utf-8"

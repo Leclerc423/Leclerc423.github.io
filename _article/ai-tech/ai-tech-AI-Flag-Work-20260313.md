@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "AI爆发式增长,或成为指引文理生就业的新风向标?"
+title: AI爆发式增长,或成为指引文理生就业的新风向标?
 date: 2026-03-13 17:16:00
 pinned: false
 category: ai-tech
-tag: "AI & 技术"
+tag: AI & 技术
 tag_type: tech
 ---
 
