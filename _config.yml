@@ -24,28 +24,28 @@ defaults:
       pinned: false
   # AI & 技术分类
   - scope:
-      path: "article/ai-tech"
+      path: "_article/ai-tech"
     values:
       category: ai-tech
       tag: "AI & 技术"
       tag_type: "tech"
   # 财经学习分类
   - scope:
-      path: "article/finance"
+      path: "_article/finance"
     values:
       category: finance
       tag: "财经学习"
       tag_type: "tech"
   # 生活旅行分类
   - scope:
-      path: "article/life-travel"
+      path: "_article/life-travel"
     values:
       category: life-travel
       tag: "生活旅行"
       tag_type: "life"
   # 游戏日志分类
   - scope:
-      path: "article/game-log"
+      path: "_article/game-log"
     values:
       category: game-log
       tag: "游戏日志"
@@ -53,7 +53,7 @@ defaults:
 
 # 包含所有文章文件
 include:
-  - "article/**/*.md"
+  - "_article/**/*.md"
 
 # 修复 GitHub Actions 构建的关键配置
 plugins:
