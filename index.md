@@ -27,126 +27,67 @@ title: Shepherd's Grid - 首页
   </svg>
 
   <div class="container">
-    <!-- Hero 区域 - 发车格风格 -->
-    <div class="hero-grid">
-      <!-- 发车格背景 -->
-      <div class="grid-bg">
-        <svg class="grid-lines" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
-              <line x1="20" y1="0" x2="20" y2="200" stroke="#e10600" stroke-width="1" opacity="0.3"/>
-              <line x1="0" y1="100" x2="400" y2="100" stroke="#e10600" stroke-width="1" opacity="0.3"/>
-            </pattern>
-          </defs>
-          <rect width="400" height="200" fill="url(#gridPattern)"/>
-        </svg>
-      </div>
-
-      <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="grid-number">1</span>
-          Shepherd's Grid
-        </h1>
-        <p class="hero-subtitle">AI & 技术 · 财经学习 · 生活旅行 · 游戏日志</p>
-      </div>
+    <!-- 简化标题 -->
+    <div class="hero-simple">
+      <h1 class="hero-title">🏁 Shepherd's Grid</h1>
+      <p class="hero-subtitle">AI & 技术 · 财经学习 · 生活旅行 · 游戏日志</p>
     </div>
 
-    <!-- 赛道分隔线 -->
-    <div class="track-divider">
-      <svg viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,2 L20,2" stroke="#e10600" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-
-    <!-- 分类导航 - 赛车发车格风格 -->
+    <!-- 分类导航 -->
     <div class="categories-nav">
-      {% for post in site.posts limit:5 %}
-        {% assign post_category = post.category %}
-        {% unless post_category %}{% assign post_category = 'all' %}{% endunless %}
-      {% endfor %}
-
       <a href="#" class="nav-item active" data-category="all">
-        <span class="nav-icon">🏁</span>
-        <span class="nav-text">全部发车</span>
+        <span class="nav-text">📚 全部文章</span>
       </a>
       <a href="/categories/ai-tech/" class="nav-item" data-category="ai-tech">
-        <span class="nav-icon">🤖</span>
-        <span class="nav-text">AI 技术</span>
+        <span class="nav-text">🤖 AI 技术</span>
       </a>
       <a href="/categories/finance/" class="nav-item" data-category="finance">
-        <span class="nav-icon">🏁</span>
-        <span class="nav-text">财经赛道</span>
+        <span class="nav-text">💰 财经赛道</span>
       </a>
       <a href="/categories/life-travel/" class="nav-item" data-category="life-travel">
-        <span class="nav-icon">🏁</span>
-        <span class="nav-text">生活赛道</span>
+        <span class="nav-text">✈️ 生活赛道</span>
       </a>
       <a href="/categories/game-log/" class="nav-item" data-category="game-log">
-        <span class="nav-icon">🏁</span>
-        <span class="nav-text">游戏赛道</span>
+        <span class="nav-text">🎮 游戏赛道</span>
       </a>
     </div>
 
-    <!-- 文章内容区 -->
-    <div class="content-wrapper">
+    <!-- 文章列表 -->
+    <div class="posts-list">
       {% if site.posts.size > 0 %}
-        <div class="posts-section" id="section-all">
-          <div class="section-header">
-            <h2>🏁 发车格 · 全部文章</h2>
-            <div class="section-count">{{ site.posts.size }} 辆赛车</div>
-          </div>
+        {% for post in site.posts %}
+          {% assign post_category = post.category %}
+          {% unless post_category %}{% assign post_category = 'all' %}{% endunless %}
 
-          <div class="posts-grid">
-            {% for post in site.posts %}
-              {% assign post_category = post.category %}
-              {% unless post_category %}{% assign post_category = 'all' %}{% endunless %}
+          <article class="post-item post-{{ post_category }}" data-category="{{ post_category }}">
+            <h2 class="post-title">
+              {% if post.pinned %}
+              <span class="pin-badge">🔥 置顶</span>
+              {% endif %}
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </h2>
 
-              <div class="post-card post-{{ post_category }}" data-category="{{ post_category }}">
-                <div class="card-content">
-                  <h3 class="post-title">
-                    {% if post.pinned %}
-                    <span class="pin-badge">🔥 置顶</span>
-                    {% endif %}
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                  </h3>
+            <div class="post-meta">
+              <time class="post-date">📅 {{ post.date | date: '%Y-%m-%d' }}</time>
+              {% if post.tag %}
+              <span class="post-tag">{{ post.tag }}</span>
+              {% endif %}
+            </div>
 
-                  <div class="post-meta">
-                    <time class="post-date">
-                      📅 {{ post.date | date: '%Y-%m-%d' }}
-                    </time>
-                    {% if post.tag %}
-                    <span class="post-tag">{{ post.tag }}</span>
-                    {% endif %}
-                  </div>
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt }}</p>
+            {% endif %}
 
-                  {% if post.excerpt %}
-                  <p class="post-excerpt">{{ post.excerpt }}</p>
-                  {% endif %}
+            <a href="{{ post.url }}" class="post-link">查看详情 →</a>
+          </article>
+        {% endfor %}
 
-                  <a href="{{ post.url }}" class="card-link">查看详情 →</a>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-
-        {% else %}
-        <div class="empty-grid">
-          <svg class="empty-track" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10,30 Q30,10 50,30 T90,30 T110,30" stroke="#e10600" stroke-width="2" fill="none" opacity="0.3"/>
-            <circle cx="60" cy="30" r="8" fill="#e10600" opacity="0.4"/>
-          </svg>
-          <p class="empty-text">赛道待发车 · 暂无文章</p>
-        </div>
-        {% endif %}
+      {% else %}
+      <div class="empty-grid">
+        <p class="empty-text">暂无文章</p>
+      </div>
+      {% endif %}
     </div>
-  </div>
-
-  <!-- 赛道分隔线 -->
-  <div class="track-divider-bottom">
-    <svg viewBox="0 0 20 4" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,2 L20,2" stroke="#e10600" stroke-width="2" stroke-linecap="round"/>
-    </svg>
   </div>
 
   <script>
