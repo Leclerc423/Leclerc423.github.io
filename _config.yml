@@ -2,8 +2,6 @@ title: Shepherd’s Grid
 description: AI&技术相关 · 智能家居 · 生活与旅行 · F1 · MI
 baseurl: ""
 url: "https://Leclerc423.github.io"
-permalink: /article/:categories/:title.html
-markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
