@@ -10,6 +10,7 @@ kramdown:
 # 静态页面配置
 include:
   - categories
+  - .htaccess
 
 # 首页配置
 defaults:
@@ -33,6 +34,26 @@ category_names:
   finance: "财经"
   life-travel: "生活"
   game-log: "游戏"
+
+# 启用分类功能
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title.html
+  pages:
+    output: true
+
+# 按分类排序文章
+permalink: /:categories/:year/:month/:day/:title.html
+
+# 首页显示文章数
+paginate: 10
+
+# 首页排序（按日期降序）
+paginate_path: "/page:num/"
+
+# 按日期排序
+timezone: Asia/Shanghai
 
 # GitHub Actions 配置
 plugins:

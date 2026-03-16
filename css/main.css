@@ -52,6 +52,13 @@ body {
   border-radius: 2px;
 }
 
+/* 容器 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .header h1 {
   font-size: 32px;
   font-weight: 600;
