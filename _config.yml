@@ -7,13 +7,16 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 定义 posts collection，使用最简单的 permalink
-collections:
-  posts:
-    output: true
-    permalink: /:path.html
+# 完全移除 collections，使用默认页面功能
+# Jekyll 会自动处理根目录和 _posts 目录下的 markdown 文件
 
+# 添加一些基本的 defaults
 defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
   - scope:
       path: ""
       type: "posts"
