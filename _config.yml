@@ -7,12 +7,11 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 定义 posts collection，指定 collection_dir
+# 定义 posts collection，使用最简单的 permalink
 collections:
   posts:
     output: true
-    collection_dir: _posts
-    permalink: /:categories/:title.html
+    permalink: /:path.html
 
 defaults:
   - scope:
