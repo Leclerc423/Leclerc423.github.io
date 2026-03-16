@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 我的文章
-date: 2026-03-16 12:00:00
-category: ai-tech
+date: 2026-03-16 20:00:00
+category: life-travel
 pinned: false
-tag: AI & 技术
+tag: 生活旅行
+excerpt: "这是一篇测试文章，用于验证Jekyll配置。文章的简介会显示在首页。测试Jekyll是否正常工作。"
 tag_type: tech
 ---
 
