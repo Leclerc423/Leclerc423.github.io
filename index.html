@@ -34,17 +34,17 @@ layout: none
     <div class="card card-tech" id="all-articles">
       <h2>已发布文章</h2>
       <div class="article-list">
-        {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+        {% assign sorted_articles = site.posts | sort: "date" | reverse %}
         {% assign pinned_articles = sorted_articles | where: "pinned", true %}
         {% assign normal_articles = sorted_articles | where: "pinned", false %}
 
-        {% if site.articles.size > 0 %}
+        {% if site.posts.size > 0 %}
          {% for article in pinned_articles %}
           <div class="article-item{% if article.pinned %} pinned{% endif %}" data-category="{{ article.category }}">
            <a href="{{ article.url }}" class="article-title">
             {% if article.pinned %}🔹 {% endif %}{{ article.title }}
             </a>
-            <div class="article-tag tag-{{ article.tag-type }}">{{ article.tag }}</div>
+            <div class="article-tag tag-{{ article.tag_type }}">{{ article.tag }}</div>
             <div class="article-date">{{ article.date | date: "%Y-%m-%d" }}</div>
           </div>
           {% endfor %}
@@ -52,7 +52,7 @@ layout: none
           {% for article in normal_articles %}
           <div class="article-item" data-category="{{ article.category }}">
            <a href="{{ article.url }}" class="article-title">{{ article.title }}</a>
-           <div class="article-tag tag-{{ article.tag-type }}">{{ article.tag }}</div>
+           <div class="article-tag tag-{{ article.tag_type }}">{{ article.tag }}</div>
            <div class="article-date">{{ article.date | date: "%Y-%m-%d" }}</div>
           </div>
           {% endfor %}

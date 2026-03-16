@@ -1,24 +1,60 @@
-title: Shepherd’s Grid
+title: Shepherd's Grid
 description: AI&技术相关 · 智能家居 · 生活与旅行 · F1 · MI
 baseurl: ""
 url: "https://Leclerc423.github.io"
+markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# 文章集合配置（关键：识别所有属性）
+# 文章集合配置
 collections:
-  articles:
+  posts:
     output: true
-    permalink: /article/:path.html
-    # 定义文章默认属性
-    defaults:
-      - scope:
-          path: "article"
-          type: "articles"
-        values:
-          pinned: false  # 默认不置顶
-          tag_type: "tech" # 默认标签类型（tech/life）
+    permalink: /:categories/:title.html
+
+# 文章默认属性
+defaults:
+  # 所有文章的默认值
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+      pinned: false
+  # AI & 技术分类
+  - scope:
+      path: "article/ai-tech"
+    values:
+      category: ai-tech
+      tag: "AI & 技术"
+      tag_type: "tech"
+  # 财经学习分类
+  - scope:
+      path: "article/finance"
+    values:
+      category: finance
+      tag: "财经学习"
+      tag_type: "tech"
+  # 生活旅行分类
+  - scope:
+      path: "article/life-travel"
+    values:
+      category: life-travel
+      tag: "生活旅行"
+      tag_type: "life"
+  # 游戏日志分类
+  - scope:
+      path: "article/game-log"
+    values:
+      category: game-log
+      tag: "游戏日志"
+      tag_type: "life"
+
+# 包含所有文章文件
+include:
+  - "article/**/*.md"
+
 # 修复 GitHub Actions 构建的关键配置
 plugins:
   - jekyll-github-metadata
@@ -33,6 +69,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+
 # 强制 Jekyll 解析根目录的 index.md
 include:
   - index.md
@@ -40,5 +77,6 @@ include:
 # 关闭不必要的功能，避免冲突
 safe: false
 lsi: false
+
 # 确保编码正确
 encoding: "utf-8"
