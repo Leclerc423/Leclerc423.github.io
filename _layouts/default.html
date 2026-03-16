@@ -3,13 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{{ page.title }} - Shepherd’s Grid</title>
+  <title>{{ page.title }} - Shepherd's Grid</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <div class="hud-top-line"></div>
+  <div class="track-top"></div>
+
   <div class="container">
-    {{ content }}
+    <div class="article-detail">
+      <a href="/" class="back-link">← 返回首页</a>
+
+      <h1>{{ page.title }}</h1>
+
+      <div class="article-meta">
+        <time>📅 {{ page.date | date: '%Y年%m月%d日' }}</time>
+        {% if page.tag %}
+        <span class="article-tag">{{ page.tag }}</span>
+        {% endif %}
+        {% if page.category %}
+        <span class="article-tag">{{ page.category }}</span>
+        {% endif %}
+      </div>
+
+      <div class="article-content">
+        {{ content }}
+      </div>
+    </div>
   </div>
 </body>
 </html>
