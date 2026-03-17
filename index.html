@@ -361,38 +361,40 @@ permalink: /
     <div class="article-grid" id="article-grid">
       {% comment %} Jekyll遍历所有文章，按分类渲染 {% endcomment %}
       {% assign sorted_articles = site.posts | sort: 'date' | reverse %}
+      {% if sorted_articles.size > 0 %}
       {% for post in sorted_articles %}
         {% comment %} 自动匹配标签样式 {% endcomment %}
-        {% if post.category == 'ai-tech' %}
-          {% assign tag_type = 'ai' %}
-          {% assign tag_text = 'AI & 技术' %}
-        {% elsif post.category == 'finance' %}
-          {% assign tag_type = 'finance' %}
-          {% assign tag_text = '财经学习' %}
-        {% elsif post.category == 'life-travel' %}
-          {% assign tag_type = 'life' %}
-          {% assign tag_text = '生活旅行' %}
-        {% elsif post.category == 'game-log' %}
-          {% assign tag_type = 'game' %}
-          {% assign tag_text = '游戏日志' %}
-        {% else %}
-          {% assign tag_type = 'life' %}
-          {% assign tag_text = '未分类' %}
-        {% endif %}
+          {% if post.category == 'ai-tech' %}
+            {% assign tag_type = 'ai' %}
+            {% assign tag_text = 'AI & 技术' %}
+          {% elsif post.category == 'finance' %}
+            {% assign tag_type = 'finance' %}
+            {% assign tag_text = '财经学习' %}
+          {% elsif post.category == 'life-travel' %}
+            {% assign tag_type = 'life' %}
+           {% assign tag_text = '生活旅行' %}
+          {% elsif post.category == 'game-log' %}
+           {% assign tag_type = 'game' %}
+            {% assign tag_text = '游戏日志' %}
+          {% else %}
+           {% assign tag_type = 'life' %}
+           {% assign tag_text = '未分类' %}
+          {% endif %}
 
-        <div class="article-card" data-category="{{ post.category }}">
-          <div class="article-card__content">
-            <span class="article-card__tag tag-{{ tag_type }}">{{ tag_text }}</span>
-            <h3 class="article-card__title">
-              <a href="{{ post.url }}">{{ post.title }}</a>
-            </h3>
-            <div class="article-card__date">{{ post.date | date: "%Y-%m-%d" }}</div>
-            <p class="article-card__excerpt">
-              {{ post.content | strip_html | truncate: 120 }}
-            </p>
+          <div class="article-card" data-category="{{ post.category }}">
+            <div class="article-card__content">
+              <span class="article-card__tag tag-{{ tag_type }}">{{ tag_text }}</span>
+              <h3 class="article-card__title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h3>
+              <div class="article-card__date">{{ post.date | date: "%Y-%m-%d" }}</div>
+              <p class="article-card__excerpt">
+                {{ post.content | strip_html | truncate: 120 }}
+              </p>
+            </div>
           </div>
-        </div>
-      {% empty %}
+        {% endfor %}
+      {% else %}
         <!-- 空状态 -->
         <div class="empty-state" style="grid-column: 1 / -1;">
           <svg class="empty-state__svg" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
@@ -401,7 +403,7 @@ permalink: /
           </svg>
           <p class="empty-state__text">暂无文章 · 赛道待发车 🏁</p>
         </div>
-      {% endfor %}
+      {% endif %}
     </div>
   </main>
 
