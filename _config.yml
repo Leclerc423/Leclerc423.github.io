@@ -1,74 +1,24 @@
-title: Shepherd's Grid
-description: AI&技术相关 · 智能家居 · 生活与旅行 · F1 · MI
+# _config.yml 完整配置
+title: Shepherd's Grid | F1 × Apple Style
+email: your-email@example.com
+description: "AI&技术相关 · 智能家居 · 生活与旅行 · F1 · MI"
 baseurl: ""
 url: "https://Leclerc423.github.io"
+twitter_username: your_username
+github_username: Leclerc423
+
+# Jekyll核心配置
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+theme: null  # 禁用默认主题，自定义极简样式
+permalink: /:categories/:title.html
+exclude: [Gemfile, README.md, node_modules, gulpfile.js, package.json]
 
-# 静态页面配置
-include:
-  - categories
-  - .htaccess
-
-# 首页配置
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: default
-      pinned: false
-      tag: "文章"
-      tag_type: tech
-  - scope:
-      path: "categories"
-      type: "pages"
-    values:
-      layout: default
-
-# 分类配置
-category_names:
-  ai-tech: "AI 技术"
-  finance: "财经"
-  life-travel: "生活"
-  game-log: "游戏"
-
-# 启用分类功能
-collections:
-  posts:
-    output: true
-    permalink: /:categories/:year/:month/:day/:title.html
-  pages:
-    output: true
-
-# 按分类排序文章
-permalink: /:categories/:year/:month/:day/:title.html
-
-# 首页显示文章数
-paginate: 10
-
-# 首页排序（按日期降序）
-paginate_path: "/page:num/"
-
-# 按日期排序
-timezone: Asia/Shanghai
-
-# GitHub Actions 配置
-plugins:
-  - jekyll-github-metadata
-  - jekyll-feed
-
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-
-safe: false
-lsi: false
-encoding: "utf-8"
+# 自定义变量（F1+苹果风格）
+f1_style:
+  primary_color: "#E10000"  # F1经典红
+  secondary_color: "#1A1A1A" # 苹果深空灰
+  accent_color: "#FFFFFF"    # 苹果纯白
+  font_primary: "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif" # 苹果官方字体
+  font_f1: "Formula1 Display, SF Pro Display, sans-serif" # F1专属字体（需引入）
+  border_radius: "8px"       # 苹果极简圆角
+  transition: "0.3s ease-in-out" # 丝滑过渡（F1速度感）

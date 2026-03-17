@@ -1,330 +1,177 @@
-/* Apple 极简风 + F1 元素 */
+/* css/main.css - F1 × 苹果极简高级风 */
+:root {
+  --f1-red: #E10000;
+  --apple-gray: #1A1A1A;
+  --apple-white: #FFFFFF;
+  --apple-light-gray: #F5F5F7;
+  --apple-border: #E8E8ED;
+  --font-f1: 'Formula1 Display', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-apple: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 8px;
+  --transition: 0.3s ease-in-out;
+}
+
+/* 全局重置 - 苹果极简基础 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-:root {
-  --apple-bg: #f5f5f7;
-  --apple-card: #ffffff;
-  --apple-text: #1d1d1f;
-  --apple-gray: #86868b;
-  --f1-red: #e10600;
-  --line-light: #d2d2d7;
+  border: none;
+  outline: none;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  background: var(--apple-bg);
-  color: var(--apple-text);
+  font-family: var(--font-apple);
+  background-color: var(--apple-light-gray);
+  color: var(--apple-gray);
   line-height: 1.6;
-  min-height: 100vh;
+  letter-spacing: -0.01em; /* 苹果字体紧凑感 */
+  padding: 0;
+  margin: 0;
 }
 
-/* 顶部 F1 赛道线 */
-.track-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--f1-red), transparent);
-  z-index: 1000;
-}
-
-/* 简洁标题区 */
-.header {
-  text-align: center;
-  padding: 60px 0 40px 0;
+/* 标题样式 - F1竞速感 + 苹果粗体 */
+h1, h2, h3, h4 {
+  font-family: var(--font-f1);
+  font-weight: 700;
+  color: var(--apple-gray);
+  margin-bottom: 16px;
   position: relative;
 }
 
-.header::after {
+/* F1风格下划线（流线型） */
+h1::after {
   content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
   width: 60px;
   height: 3px;
-  background: var(--f1-red);
-  border-radius: 2px;
+  background-color: var(--f1-red);
+  margin-top: 8px;
+  border-radius: 3px;
+  transition: var(--transition);
 }
 
-/* 容器 */
+h1:hover::after {
+  width: 120px; /* hover时扩展，F1速度感 */
+}
+
+/* 容器布局 - 苹果极简居中+留白 */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 24px;
 }
 
-.header h1 {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-
-.header p {
-  font-size: 15px;
-  color: var(--apple-gray);
-  font-weight: 400;
-}
-
-/* 分类导航 */
-.nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin: 30px 0;
-  padding: 0 20px;
-}
-
-.nav-item {
-  padding: 8px 16px;
-  background: var(--apple-card);
-  border: 1px solid var(--line-light);
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--apple-text);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.nav-item:hover {
-  border-color: var(--f1-red);
-  color: var(--f1-red);
-  transform: translateY(-1px);
-}
-
-.nav-item.active {
-  background: var(--f1-red);
-  border-color: var(--f1-red);
-  color: white;
-}
-
-/* 文章列表 */
-.article-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.article-item {
-  background: var(--apple-card);
-  border: 1px solid var(--line-light);
-  border-radius: 12px;
-  padding: 24px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: block;
-  position: relative;
-  overflow: hidden;
-}
-
-.article-item::before {
-  content: '';
-  position: absolute;
+/* 导航栏 - F1红+苹果磨砂玻璃 */
+.navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px); /* 苹果磨砂玻璃效果 */
+  border-bottom: 1px solid var(--apple-border);
+  padding: 16px 24px;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--f1-red), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
+  z-index: 100;
 }
 
-.article-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  border-color: var(--f1-red);
-}
-
-.article-item:hover::before {
-  opacity: 1;
-}
-
-.article-title {
+.navbar .logo {
+  font-family: var(--font-f1);
   font-size: 20px;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.pin-badge {
-  font-size: 11px;
-  padding: 2px 8px;
-  background: var(--f1-red);
-  color: white;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.article-title a {
-  color: var(--apple-text);
+  color: var(--f1-red);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
-.article-title a:hover {
+.navbar .nav-links {
+  display: flex;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.navbar .nav-links a {
+  color: var(--apple-gray);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.navbar .nav-links a:hover {
+  border-bottom: 2px solid var(--f1-red);
   color: var(--f1-red);
 }
 
-.article-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  color: var(--apple-gray);
-}
-
-.article-date,
-.article-tag {
-  font-weight: 500;
-}
-
-.article-excerpt {
-  color: var(--apple-gray);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 12px 0 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line-light);
-}
-
-/* 文章详情页 */
-.article-detail {
-  background: var(--apple-card);
-  border-radius: 16px;
-  padding: 40px;
-  min-height: calc(100vh - 80px);
-}
-
-.article-detail h1 {
-  font-size: 36px;
-  font-weight: 700;
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-}
-
-.article-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 30px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line-light);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: var(--apple-bg);
-  border: 1px solid var(--line-light);
-  border-radius: 20px;
-  color: var(--apple-text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+/* 文章卡片 - 苹果极简卡片+F1细节 */
+.article-card {
+  background: var(--apple-white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); /* 苹果轻阴影 */
+  padding: 24px;
   margin-bottom: 24px;
-  transition: all 0.2s;
+  transition: var(--transition);
 }
 
-.back-link:hover {
-  background: var(--apple-gray);
-  color: white;
-  border-color: var(--apple-gray);
+.article-card:hover {
+  transform: translateY(-4px); /* 轻微上浮，F1轻量化感 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.article-content {
-  font-size: 18px;
-  line-height: 1.8;
-  color: var(--apple-text);
+.article-card .category {
+  display: inline-block;
+  background: var(--f1-red);
+  color: var(--apple-white);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }
 
-.article-content h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin: 40px 0 16px 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line-light);
-}
-
-.article-content h3 {
-  font-size: 22px;
-  font-weight: 600;
-  margin: 32px 0 12px 0;
-}
-
-.article-content p {
-  margin-bottom: 20px;
-}
-
-.article-content ul {
-  list-style: none;
-  margin: 20px 0;
-  padding-left: 0;
-}
-
-.article-content li {
-  padding-left: 20px;
-  position: relative;
+.article-card .title {
+  font-size: 20px;
   margin-bottom: 8px;
 }
 
-.article-content li::before {
-  content: '•';
-  color: var(--f1-red);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
+.article-card .date {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 16px;
 }
 
-/* 空状态 */
-.empty-state {
+/* 按钮 - F1红+苹果圆角 */
+.btn {
+  display: inline-block;
+  background: var(--apple-gray);
+  color: var(--apple-white);
+  font-family: var(--font-apple);
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--f1-red);
+  transform: scale(1.02); /* 轻微缩放，F1加速感 */
+}
+
+/* 页脚 - 苹果极简 */
+.footer {
   text-align: center;
-  padding: 60px 20px;
-  color: var(--apple-gray);
+  padding: 40px 24px;
+  border-top: 1px solid var(--apple-border);
+  margin-top: 80px;
+  color: #888;
+  font-size: 14px;
 }
 
-.empty-state p {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-/* 响应式 */
+/* 响应式 - 苹果全设备适配 */
 @media (max-width: 768px) {
   .container {
-    padding: 20px 15px;
+    padding: 24px 16px;
   }
-
-  .header {
-    padding: 40px 0 30px 0;
+  .navbar .nav-links {
+    gap: 16px;
   }
-
-  .header h1 {
-    font-size: 28px;
-  }
-
-  .article-detail {
-    padding: 24px;
-    border-radius: 12px;
-  }
-
-  .article-detail h1 {
-    font-size: 28px;
-  }
-
-  .article-content {
-    font-size: 16px;
+  .article-card {
+    padding: 16px;
   }
 }

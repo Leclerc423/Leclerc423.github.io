@@ -3,32 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} - Shepherd's Grid</title>
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <!-- 引入苹果官方字体 + F1字体 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formula1-fonts@1.0.0/formula1.css"> <!-- F1字体CDN -->
+  <!-- 自定义样式 -->
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <div class="track-top"></div>
-
-  <div class="container">
-    <div class="article-detail">
-      <a href="/" class="back-link">← 返回首页</a>
-
-      <h1>{{ page.title }}</h1>
-
-      <div class="article-meta">
-        <time>📅 {{ page.date | date: '%Y年%m月%d日' }}</time>
-        {% if page.tag %}
-        <span class="article-tag">{{ page.tag }}</span>
-        {% endif %}
-        {% if page.category %}
-        <span class="article-tag">{{ page.category }}</span>
-        {% endif %}
-      </div>
-
-      <div class="article-content">
-        {{ content }}
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container" style="display: flex; align-items: center;">
+      <a href="/" class="logo">Shepherd's Grid</a>
+      <div class="nav-links">
+        <a href="/#ai-tech">AI&技术</a>
+        <a href="/#finance">财经学习</a>
+        <a href="/#game-log">游戏日志</a>
+        <a href="/#life-travel">生活旅行</a>
       </div>
     </div>
-  </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="container">
+    <!-- 文章头部（F1风格分类标签） -->
+    <div class="article-header" style="margin-bottom: 40px;">
+      <span class="category">{{ page.category | replace: 'ai-tech', 'AI&技术' | replace: 'finance', '财经学习' | replace: 'game-log', '游戏日志' | replace: 'life-travel', '生活旅行' }}</span>
+      <h1 style="font-size: 32px; margin-top: 16px;">{{ page.title }}</h1>
+      <p class="date">{{ page.date | date: "%Y年%m月%d日" }}</p>
+    </div>
+
+    <!-- 文章正文（苹果极简排版） -->
+    <div class="article-content" style="font-size: 16px; line-height: 1.8; max-width: 800px; margin: 0 auto; padding-bottom: 40px;">
+      {{ content }}
+    </div>
+
+    <!-- 回到顶部按钮（F1风格） -->
+    <a href="#" class="btn" style="position: fixed; bottom: 40px; right: 40px; background: var(--f1-red);">↑</a>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>© {{ site.time | date: "%Y" }} Shepherd's Grid | F1 × Apple Minimal Style</p>
+  </footer>
 </body>
 </html>

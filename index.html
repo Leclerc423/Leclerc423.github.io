@@ -4,78 +4,465 @@ title: Shepherd's Grid - 首页
 permalink: /
 ---
 
-<div class="track-top"></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <!-- 引入苹果官方字体 + F1专属字体 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formula1-fonts@1.0.0/formula1.css">
+  <!-- 核心样式：F1+苹果极简融合 -->
+  <style>
+    /* 全局变量：F1+苹果配色体系 */
+    :root {
+      /* F1 核心色 */
+      --f1-red: #E10000;
+      --f1-black: #1A1A1A;
+      --f1-white: #FFFFFF;
+      /* 苹果极简色 */
+      --apple-gray-100: #F5F5F7;
+      --apple-gray-200: #E8E8ED;
+      --apple-gray-300: #86868B;
+      --apple-gray-800: #1D1D1F;
+      /* 交互变量 */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 苹果丝滑过渡 */
+      /* 字体变量 */
+      --font-f1: 'Formula1 Display', 'SF Pro Display', sans-serif;
+      --font-apple: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-<div class="container">
-  <div class="header">
-    <h1>🏁 Shepherd's Grid</h1>
-    <p>AI & 技术 · 财经学习 · 生活旅行 · 游戏日志</p>
-  </div>
+    /* 全局重置：苹果极简基础 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      -webkit-font-smoothing: antialiased; /* 苹果字体抗锯齿 */
+    }
 
-  <nav class="nav-list">
-    <a href="#" class="nav-item active" data-category="all">📚 全部文章</a>
-    <a href="/categories/ai-tech/" class="nav-item" data-category="ai-tech">🤖 AI 技术</a>
-    <a href="/categories/finance/" class="nav-item" data-category="finance">💰 财经</a>
-    <a href="/categories/life-travel/" class="nav-item" data-category="life-travel">✈️ 生活</a>
-    <a href="/categories/game-log/" class="nav-item" data-category="game-log">🎮 游戏</a>
+    body {
+      font-family: var(--font-apple);
+      background-color: var(--apple-gray-100);
+      color: var(--apple-gray-800);
+      line-height: 1.5;
+      letter-spacing: -0.01em; /* 苹果字体紧凑感 */
+    }
+
+    /* 容器：苹果式居中留白 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 头部：F1赛车旗 + 苹果极简排版 */
+    .header {
+      padding: 64px 0 48px;
+      text-align: center;
+    }
+
+    .header__logo {
+      font-family: var(--font-f1);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--f1-black);
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .header__logo::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--f1-red);
+      margin: 8px auto 0;
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+
+    .header__logo:hover::after {
+      width: 100%; /* F1速度感扩展 */
+    }
+
+    .header__subtitle {
+      font-size: 18px;
+      color: var(--apple-gray-300);
+      font-weight: 400;
+    }
+
+    /* 赛道分割线：F1经典红 */
+    .track-divider {
+      width: 120px;
+      height: 2px;
+      background-color: var(--f1-red);
+      margin: 0 auto 48px;
+      border-radius: 1px;
+    }
+
+    /* 分类导航：发车格风格 + 苹果磨砂玻璃 */
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px); /* 苹果磨砂玻璃 */
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .category-btn {
+      font-family: var(--font-apple);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--apple-gray-800);
+      background: transparent;
+      padding: 8px 20px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .category-btn.active {
+      background-color: var(--f1-red);
+      color: var(--f1-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .category-btn:not(.active):hover {
+      border-color: var(--apple-gray-200);
+      color: var(--f1-red);
+    }
+
+    /* 文章列表：发车格网格 + 苹果卡片 */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .article-card {
+      background-color: var(--f1-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--f1-red);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px); /* 苹果卡片上浮 */
+      box-shadow: var(--shadow-md);
+    }
+
+    .article-card:hover::before {
+      opacity: 1; /* F1红色侧边条浮现 */
+    }
+
+    .article-card__content {
+      padding: 24px;
+    }
+
+    .article-card__tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+
+    /* 分类标签配色：F1+苹果撞色 */
+    .tag-ai { background-color: #007AFF; color: white; }
+    .tag-finance { background-color: #FF9500; color: white; }
+    .tag-life { background-color: #34C759; color: white; }
+    .tag-game { background-color: #AF52DE; color: white; }
+
+    .article-card__title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .article-card__title a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .article-card__title a:hover {
+      color: var(--f1-red);
+    }
+
+    .article-card__date {
+      font-size: 12px;
+      color: var(--apple-gray-300);
+      margin-bottom: 16px;
+    }
+
+    .article-card__excerpt {
+      font-size: 14px;
+      color: var(--apple-gray-300);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* 空状态：F1赛道SVG + 苹果极简提示 */
+    .empty-state {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--apple-gray-300);
+    }
+
+    .empty-state__svg {
+      width: 120px;
+      height: 60px;
+      margin: 0 auto 16px;
+    }
+
+    .empty-state__text {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* 回到顶部：F1红色悬浮按钮 */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background-color: var(--f1-red);
+      color: var(--f1-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.05); /* F1加速缩放 */
+    }
+
+    /* 页脚：苹果极简风格 */
+    .footer {
+      padding: 48px 0 24px;
+      border-top: 1px solid var(--apple-gray-200);
+      text-align: center;
+    }
+
+    .footer__text {
+      font-size: 14px;
+      color: var(--apple-gray-300);
+    }
+
+    /* 响应式：苹果全设备适配 */
+    @media (max-width: 768px) {
+      .header {
+        padding: 48px 0 32px;
+      }
+
+      .header__logo {
+        font-size: 36px;
+      }
+
+      .category-nav {
+        padding: 12px 16px;
+        gap: 8px;
+      }
+
+      .category-btn {
+        padding: 6px 16px;
+        font-size: 13px;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .article-card__content {
+        padding: 16px;
+      }
+
+      .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 24px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部区域 -->
+  <header class="header">
+    <div class="container">
+      <h1 class="header__logo">Shepherd's Grid</h1>
+      <p class="header__subtitle">F1 竞速感 × 苹果极简风 · 技术与生活的融合</p>
+    </div>
+  </header>
+
+  <!-- F1赛道分割线 -->
+  <div class="track-divider"></div>
+
+  <!-- 分类导航 -->
+  <nav class="category-nav container">
+    <button class="category-btn active" data-category="all">📚 全部文章</button>
+    <button class="category-btn" data-category="ai-tech">🤖 AI & 技术</button>
+    <button class="category-btn" data-category="finance">💰 财经学习</button>
+    <button class="category-btn" data-category="life-travel">✈️ 生活旅行</button>
+    <button class="category-btn" data-category="game-log">🎮 游戏日志</button>
   </nav>
 
-  <div class="article-list">
-    {% if site.posts.size > 0 %}
-      <p>找到 {{ site.posts.size }} 篇文章</p>
-      {% for post in site.posts %}
-        <article class="article-item" data-category="{{ post.category }}">
-          <h2 class="article-title">
-            {% if post.pinned %}
-            <span class="pin-badge">🔥 置顶</span>
-            {% endif %}
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h2>
+  <!-- 文章列表网格 -->
+  <main class="container">
+    <div class="article-grid" id="article-grid">
+      {% comment %} Jekyll遍历所有文章，按分类渲染 {% endcomment %}
+      {% assign sorted_articles = site.posts | sort: 'date' | reverse %}
+      {% for post in sorted_articles %}
+        {% comment %} 自动匹配标签样式 {% endcomment %}
+        {% if post.category == 'ai-tech' %}
+          {% assign tag_type = 'ai' %}
+          {% assign tag_text = 'AI & 技术' %}
+        {% elsif post.category == 'finance' %}
+          {% assign tag_type = 'finance' %}
+          {% assign tag_text = '财经学习' %}
+        {% elsif post.category == 'life-travel' %}
+          {% assign tag_type = 'life' %}
+          {% assign tag_text = '生活旅行' %}
+        {% elsif post.category == 'game-log' %}
+          {% assign tag_type = 'game' %}
+          {% assign tag_text = '游戏日志' %}
+        {% else %}
+          {% assign tag_type = 'life' %}
+          {% assign tag_text = '未分类' %}
+        {% endif %}
 
-          <div class="article-meta">
-            <time class="article-date">📅 {{ post.date | date: '%Y-%m-%d' }}</time>
-            {% if post.tag %}
-            <span class="article-tag">{{ post.tag }}</span>
-            {% endif %}
-            <span class="article-category">{{ post.category }}</span>
+        <div class="article-card" data-category="{{ post.category }}">
+          <div class="article-card__content">
+            <span class="article-card__tag tag-{{ tag_type }}">{{ tag_text }}</span>
+            <h3 class="article-card__title">
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </h3>
+            <div class="article-card__date">{{ post.date | date: "%Y-%m-%d" }}</div>
+            <p class="article-card__excerpt">
+              {{ post.content | strip_html | truncate: 120 }}
+            </p>
           </div>
-
-          {% if post.excerpt %}
-          <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-          {% endif %}
-        </article>
+        </div>
+      {% empty %}
+        <!-- 空状态 -->
+        <div class="empty-state" style="grid-column: 1 / -1;">
+          <svg class="empty-state__svg" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,30 Q30,10 50,30 T90,30 T110,30" stroke="#e10600" stroke-width="2" fill="none" opacity="0.3"/>
+            <circle cx="60" cy="30" r="8" fill="#007aff" opacity="0.4"/>
+          </svg>
+          <p class="empty-state__text">暂无文章 · 赛道待发车 🏁</p>
+        </div>
       {% endfor %}
-    {% else %}
-    <div class="empty-state">
-      <p>暂无文章</p>
     </div>
-    {% endif %}
-  </div>
-</div>
+  </main>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 分类切换
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', function(e) {
-        e.preventDefault();
-        const category = this.dataset.category;
+  <!-- 回到顶部按钮 -->
+  <div class="back-to-top" id="backToTop">↑</div>
 
-        // 更新导航状态
-        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
+  <!-- 页脚 -->
+  <footer class="footer container">
+    <p class="footer__text">© {{ site.time | date: "%Y" }} Shepherd's Grid · F1 × Apple Minimal Style</p>
+  </footer>
 
-        // 切换文章列表
-        document.querySelectorAll('.article-item').forEach(article => {
-          if (category === 'all') {
-            article.style.display = 'block';
-          } else if (article.dataset.category === category) {
-            article.style.display = 'block';
+  <!-- 交互逻辑：分类筛选 + 回到顶部 -->
+  <script>
+    // 1. 分类筛选逻辑
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+    const emptyState = document.querySelector('.empty-state');
+
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 切换活跃状态
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const targetCategory = btn.dataset.category;
+        let visibleCount = 0;
+
+        // 筛选文章
+        articleCards.forEach(card => {
+          if (targetCategory === 'all' || card.dataset.category === targetCategory) {
+            card.style.display = 'block';
+            visibleCount++;
           } else {
-            article.style.display = 'none';
+            card.style.display = 'none';
           }
         });
+
+        // 显示/隐藏空状态
+        if (emptyState) {
+          emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
       });
     });
-  });
-</script>
+
+    // 2. 回到顶部逻辑
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 苹果丝滑滚动
+      });
+    });
+  </script>
+</body>
+</html>
