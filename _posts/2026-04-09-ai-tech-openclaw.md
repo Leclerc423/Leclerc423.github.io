@@ -5,7 +5,7 @@ date: 2026-04-09 14:00:00
 category: ai-tech
 pinned: false
 tag: AI & 技术
-excerpt: ""
+excerpt: "当你被AI执行错几次任务之后，你就知道怎么正确地表达了。"
 tag_type: tech
 ---
 
